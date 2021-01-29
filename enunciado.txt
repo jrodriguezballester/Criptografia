@@ -1,0 +1,18 @@
+Ejercicio 1 - Criptografía
+Dada la librería cryptography, realizad la instalación en vuestro entorno de trabajo para
+poder hacer uso de ella.
+
+Una vez instalada construir un programa que según un parámetro de entrada -e (encode) o
+-d (decode) reciba una cadena de caracteres en texto plano y la encripte o bien la
+desencripte según el parámetro.
+
+Para ello nuestro programa, en primer lugar, deberá generar una clave para codificar y
+decodificar (esta debe ser la misma).
+
+El programa tras generar la clave, debe ser capaz de almacenarla en un fichero para poder
+consultar la clave para poder decodificar un texto si se lo pasamos codificado o para
+codificar un texto si se lo pasamos en formato plano.
+
+El programa deberá comprobar que existe un fichero con clave para no generar otra. Si esta
+comprobación no existe, se podría dar el caso de que cree una clave para codificar y
+después no podamos decodificar un mensaje o a la inversa.
