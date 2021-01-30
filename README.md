@@ -1,11 +1,13 @@
 # Criptografia
 
 ## Práctica 5 - Criptografia y Consulta y acceso a ficheros
+
 Para la presente práctica vamos a trabajar con la librería cryptography de Python para
 enviar y recibir mensajes encriptados y la librería os para acceso a ficheros y posterior
 manejo sobre ellos.
 
 ### Ejercicio 1 - Criptografía
+
 Dada la librería cryptography, realizad la instalación en vuestro entorno de trabajo para
 poder hacer uso de ella.
 
@@ -24,8 +26,9 @@ El programa deberá comprobar que existe un fichero con clave para no generar ot
 comprobación no existe, se podría dar el caso de que cree una clave para codificar y
 después no podamos decodificar un mensaje o a la inversa.
 
-### Ejercicio 2 - Consulta y acceso a ficheros.
-Dado el fichero adjunto en la práctica, se pide crear un programa capaz de leer y escribir
+### Ejercicio 2 - Consulta y acceso a ficheros
+
+Dado el fichero adjunto en la práctica (selled_policies.csv), se pide crear un programa capaz de leer y escribir
 sobre el mismo fichero.
 
 Según el modo de apertura que le pasemos como parámetro al programa este realizará
@@ -44,8 +47,8 @@ duplicar la línea final sobre el mismo fichero.
 línea en una variable y abrir de nuevo el fichero en modo Añadido (este
 dispone el puntero al final del fichero para seguir escribiendo) y de esta forma
 duplicar esa última línea con lo guardado en la variable.
+
 - Abrir el fichero en solo escritura (w): ¿Qué ocurre al abrir un fichero en modo solo
 escritura con el mismo nombre que el fichero que tenemos?
 
 ## Solucion
-
