@@ -35,19 +35,16 @@ def get_key():
 
 
 def encriptar(mensaje, f):
-    token = f.encrypt(mensaje.encode())
-    # print('el mensaje:::', f.decrypt(token).decode())
-    return token
+    return f.encrypt(mensaje.encode())
 
 
 def desencriptar(token, f):
-    mensaje = f.decrypt(token).decode()
-    return mensaje
+    return f.decrypt(token).decode()
 
 
 if __name__ == '__main__':
 
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description='Codificar y decodificar mensajes')
 
     parser.add_argument('-d', '--desencrip', help='Mensaje a decodificar')
     parser.add_argument('-e', '--encrip', help='codificar mensaje')
@@ -76,16 +73,20 @@ if __name__ == '__main__':
         # Actuar en funcion del argumento
         # Encriptar
         if args.encrip:
-            print('el mensaje es: ', args.encrip)
+
             mensaje = args.encrip
             token = encriptar(mensaje, f)
-            print('el token: ', token)
+
+            print('el mensaje es: ', args.encrip)
+            print('el token: ', token.decode())
 
         # Desencriptar
         if args.desencrip:
-            print('token: ', args.desencrip)
+
             token = args.desencrip.encode()
             mensaje = desencriptar(token, f)
+
+            print('token: ', args.desencrip)
             print('el mensaje:', mensaje)
 
     else:
