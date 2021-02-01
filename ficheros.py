@@ -1,7 +1,7 @@
 import argparse
-import os
 
-lineas=[]
+lineas = []
+
 
 def read_file(modOpen):
     global lineas
@@ -15,9 +15,9 @@ def read_file(modOpen):
             print("Error de lectura del archivo")
             exit()
         for line in lineas:
-         #   filas.append(line.rstrip(('\n')))   # guarda cada fila en filas sin salto de linea
-                                                # registro lineas ---> "2020-12-31", 2, "quecoches", "AMV", 2\n
-                                                # registro filas  ---> "2020-12-31", 2, "quecoches", "AMV", 2
+            #   filas.append(line.rstrip(('\n')))   # guarda cada fila en filas sin salto de linea
+            # registro lineas ---> "2020-12-31", 2, "quecoches", "AMV", 2\n
+            # registro filas  ---> "2020-12-31", 2, "quecoches", "AMV", 2
 
             if first:
                 headers = line.rstrip('\n').split(',')
@@ -39,7 +39,8 @@ def read_file(modOpen):
 
                         dato += headers[j].strip('"') + ': ' + datos[j] + '   '
                     except:
-                        print("error en formato en la linea ", linea, " del archivo" )
+                        print("error en formato en la linea ", linea, " del archivo")
+
                 print(str(linea) + ":  " + dato)
             linea += 1
     return linea - 1
@@ -51,10 +52,11 @@ def escribir(modOpen):
     f = open('selled_policies.csv', modOpen)
 
     f.seek(0, 2)
-
-    print("registro a guardar: ", lineas[-1])
-    f.write(lineas[-1])
-
+    try:
+        print("registro a guardar: ", lineas[-1])
+        f.write(lineas[-1])
+    except IndexError:
+        print("no tienes registros para duplicar")
     f.close()
 
 
@@ -63,23 +65,19 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     my_group = parser.add_mutually_exclusive_group(required=True)
 
-    my_group.add_argument('-l', '--lectura', action='store_true', help=' Modo lectura')
-    my_group.add_argument('-e', '--lectoEscritura', action='store_true', help='Modo lectura y escritura')
-    my_group.add_argument('-w', '--escritura', action='store_true', help='Modo lectura y escritura')
+    my_group.add_argument('-r', '--read', action='store_true', help=' Modo lectura')
+    my_group.add_argument('-r+', '--readWrite', action='store_true', help='Modo lectura y escritura')
+    my_group.add_argument('-w', '--overwrite', action='store_true', help='Modo escritura')
 
     args = parser.parse_args()
 
-
-    if args.lectura:
-
-        modOpen = 'r'   # modo apertura fichero segun enunciado
+    if args.read:
+        modOpen = 'r'  # modo apertura fichero segun enunciado
 
         registros = read_file(modOpen)
         print('Numero de registros: ', registros)
 
-
-    if args.lectoEscritura:
-
+    if args.readWrite:
         modOpen = 'r+'  # modo apertura fichero segun enunciado
 
         registros = read_file(modOpen)
@@ -87,12 +85,17 @@ if __name__ == '__main__':
 
         escribir(modOpen)
 
-
-    if args.escritura:
-
+    if args.overwrite:
+        # Explicitamente lo pedido;
         modOpen = 'w'  # modo apertura fichero segun enunciado
 
-        registros = read_file(modOpen) # Dará error por el tipo de apertura
-        print('Numero de registros: ', registros)
+        # Pruebas para ver el comportamiento del fichero
+        # read_file(modOpen)
+        # escribir(modOpen)
 
-        escribir(modOpen)
+        f = open('selled_policies.csv', modOpen)
+        print('Abierto en escritura')
+        f.close()
+
+
+
